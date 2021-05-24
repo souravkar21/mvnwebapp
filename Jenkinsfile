@@ -31,6 +31,24 @@ pipeline {
                 deploy adapters: [tomcat7(credentialsId: 'tomcat-cred', path: '', url: 'http://localhost:8085')], contextPath: 'CalC', war: '**/*.war'
             }
         }
+        stage("Upload to Artifactory") {
+            steps {
+                rtMavenDeployer (
+                    id: "admin",
+                    serverId: "My_Artifactory",
+                    releaseRepo: "mvnwebapp",
+                    snapshotRepo: "mvnwebapp"
+                )
+                rtMavenRun (
+                    pom: "pom.xml",
+                    goals: "clean install",
+                    deployerId: "admin"
+                )
+                rtPublishBuildInfo (
+                    serverId: "admin"
+                )
+            }
+        }
     }
     post {
         always {
