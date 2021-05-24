@@ -45,7 +45,7 @@ pipeline {
                     deployerId: "admin"
                 )
                 rtPublishBuildInfo (
-                    serverId: "admin"
+                    serverId: "My_Artifactory"
                 )
             }
         }
