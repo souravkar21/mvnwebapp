@@ -36,8 +36,8 @@ pipeline {
                 rtMavenDeployer (
                     id: "admin",
                     serverId: "My_Artifactory",
-                    releaseRepo: "mvnwebapp",
-                    snapshotRepo: "mvnwebapp"
+                    releaseRepo: "CalC",
+                    snapshotRepo: "CalC"
                 )
                 rtMavenRun (
                     pom: "pom.xml",
